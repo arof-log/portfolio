@@ -8,10 +8,9 @@ content:
     type: file
     path: data/works.json
     format: json
-    list:
-      collapsible:
-        collapsed: true
-        summary: "{title} / {category}"
+    list: true
+    operations:
+      delete: false
     fields:
       - name: id
         label: ID / Slug
@@ -62,7 +61,7 @@ content:
     type: collection
     path: content/detail-pages
     format: yaml
-    extension: yml
+    filename: "{title}.yml"
     fields:
       - name: title
         label: 페이지명
@@ -88,6 +87,10 @@ content:
     path: content/guestbook
     format: yaml-frontmatter
     exclude: [".gitkeep"]
+    operations:
+      create: false
+      rename: false
+      delete: true
     fields:
       - name: name
         label: 이름
