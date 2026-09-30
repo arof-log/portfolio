@@ -53,30 +53,123 @@
           (사진,이미지,슬라이드,동영상,슬로건(문구),효과,...)-->
       </section>
       <section id="about" class="section">
-        <div class="about-inner">
-          <div class="about-profile">
-            <div class="about-section-title">
-              <h2>PROFILE</h2>
+        <div class="about-page">
+          <div class="about-hero">
+            <div class="about-intro">
+              <p class="eyebrow">DESIGNER</p>
+              <h2 class="name">Yelan<br>Park</h2>
+              <p class="headline">좋은 경험을 만드는 디자이너, 박예란입니다.</p>
+              <p class="intro-copy">
+                사용자의 일상에 자연스럽게 스며드는<br>
+                디지털 경험을 디자인합니다.<br>
+                브랜드와 사용자가 더 가까워질 수 있는<br>
+                따뜻하고 섬세한 인터페이스를 고민합니다.
+              </p>
+              <span class="intro-line"></span>
+              <p class="intro-en">Designing meaningful<br>experiences for a better tomorrow.</p>
             </div>
-            <dl class="profile-list">
-              <dt>이름</dt><dd>박민서</dd>
-              <dt>생년월일</dt><dd>1997. 03. 12</dd>
-              <dt>거주지</dt><dd>전주, 대한민국</dd>
-              <dt>이메일</dt><dd><a href="mailto:yelan.park@example.com">yelan.park@example.com</a></dd>
-              <dt>연락처</dt><dd><a href="tel:01012345678">010-1234-5678</a></dd>
-              <dt>SNS</dt>
-              <dd>
-                <div class="social-links" aria-label="소셜 미디어 링크">
-                  <a href="#" aria-label="Social link 1"><img src="./images/Social Icons 1.png" alt=""></a>
-                  <a href="#" aria-label="Social link 2"><img src="./images/Social Icons 2.png" alt=""></a>
-                  <a href="#" aria-label="Social link 3"><img src="./images/Social Icons 3.png" alt=""></a>
-                  <a href="#" aria-label="Social link 4"><img src="./images/Social Icons 4.png" alt=""></a>
+
+            <div class="about-photo">
+              <img src="./images/hero.png" alt="디자이너 박예란 프로필 이미지">
+              <p class="photo-script">Design<br>connects<br>people.</p>
+            </div>
+
+            <nav class="about-index" aria-label="About section index">
+              <a href="#about-profile"><span>01</span>PROFILE</a>
+              <a href="#about-skills"><span>02</span>SKILLS</a>
+              <a href="#about-experience"><span>03</span>EXPERIENCE</a>
+              <a href="#contact"><span>04</span>CONTACT</a>
+            </nav>
+          </div>
+
+          <div class="about-details">
+            <article id="about-profile" class="about-panel profile-panel">
+              <h3>PROFILE</h3>
+              <dl class="profile-grid">
+                <dt>이름</dt><dd>박민서</dd>
+                <dt>생년월일</dt><dd>1997. 03. 12</dd>
+                <dt>거주지</dt><dd>전주, 대한민국</dd>
+                <dt>이메일</dt><dd><a href="mailto:yelan.park@example.com">yelan.park@example.com</a></dd>
+                <dt>연락처</dt><dd><a href="tel:01012345678">010-1234-5678</a></dd>
+                <dt>SNS</dt>
+                <dd>
+                  <div class="social-links">
+                    <a href="#" aria-label="Facebook"><img src="./images/Social Icons 1.png" alt=""></a>
+                    <a href="#" aria-label="X"><img src="./images/Social Icons 2.png" alt=""></a>
+                    <a href="#" aria-label="Instagram"><img src="./images/Social Icons 3.png" alt=""></a>
+                    <a href="#" aria-label="LinkedIn"><img src="./images/Social Icons 4.png" alt=""></a>
+                  </div>
+                </dd>
+              </dl>
+              <a class="about-cta" href="mailto:yelan.park@example.com">
+                <span>CONTACT ME</span><span aria-hidden="true">→</span>
+              </a>
+            </article>
+
+            <article id="about-skills" class="about-panel skills-panel">
+              <h3>SKILLS</h3>
+              <p class="panel-label">Design Tool</p>
+              <div class="tool-grid">
+                <div class="tool-item"><img src="./images/App logo 138.png" alt="Figma"><span>Figma</span></div>
+                <div class="tool-item"><img src="./images/App logo 140.png" alt="Adobe Photoshop"><span>Adobe<br>Photoshop</span></div>
+                <div class="tool-item"><img src="./images/App logo 142.png" alt="Adobe Illustrator"><span>Adobe<br>Illustrator</span></div>
+                <div class="tool-item"><img src="./images/App logo 198.png" alt="Adobe After Effects"><span>Adobe<br>After Effects</span></div>
+              </div>
+              <p class="panel-label core-label">Core Skills</p>
+              <div class="skill-bars">
+                <div class="skill-row"><span>UI/UX Design</span><div class="bar"><i style="width:90%"></i></div><b>90%</b></div>
+                <div class="skill-row"><span>Visual Design</span><div class="bar"><i style="width:85%"></i></div><b>85%</b></div>
+                <div class="skill-row"><span>Interaction Design</span><div class="bar"><i style="width:80%"></i></div><b>80%</b></div>
+                <div class="skill-row"><span>Branding</span><div class="bar"><i style="width:75%"></i></div><b>75%</b></div>
+                <div class="skill-row"><span>Prototyping</span><div class="bar"><i style="width:85%"></i></div><b>85%</b></div>
+              </div>
+            </article>
+
+            <article id="about-experience" class="about-panel experience-panel">
+              <h3>EXPERIENCE</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <time>2024 – Present</time>
+                  <div class="timeline-copy">
+                    <strong>프리랜스 디자이너</strong>
+                    <p>브랜드, 웹/앱, 그래픽 등<br>다양한 프로젝트 진행</p>
+                  </div>
                 </div>
-              </dd>
-            </dl>
-            <a class="about-cta" href="mailto:yelan.park@example.com">
-              <span>CONTACT ME</span><span aria-hidden="true">→</span>
-            </a>
+                <div class="timeline-item">
+                  <time>2022 – 2024</time>
+                  <div class="timeline-copy">
+                    <strong>(주) 모드스튜디오<br>UI/UX 디자이너</strong>
+                    <p>웹·모바일 서비스 디자인,<br>브랜드 비주얼 제작</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <time>2020 – 2022</time>
+                  <div class="timeline-copy">
+                    <strong>(주) 라이트컴퍼니<br>그래픽 디자이너</strong>
+                    <p>온라인 콘텐츠 및 마케팅 디자인</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <time>2016 – 2020</time>
+                  <div class="timeline-copy">
+                    <strong>홍익대학교 시각디자인과</strong>
+                    <p>학사 졸업</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="about-panel more-panel">
+              <h3>MORE ABOUT ME</h3>
+              <ul class="more-list">
+                <li><span>☕</span><p>좋은 커피와 조용한 공간에서<br>아이디어를 찾는 걸 좋아해요.</p></li>
+                <li><span>▬</span><p>다양한 분야의 레퍼런스를 수집하고<br>기록하는 것을 즐깁니다.</p></li>
+                <li><span>✦</span><p>새로운 경험을 통해<br>시야를 넓히는 것을 좋아합니다.</p></li>
+              </ul>
+              <div class="detail-card">
+                <img src="./images/div.detail-card.png" alt="Small details make a big difference.">
+              </div>
+            </article>
           </div>
         </div>
       </section>
