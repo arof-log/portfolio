@@ -53,9 +53,32 @@
           (사진,이미지,슬라이드,동영상,슬로건(문구),효과,...)-->
       </section>
       <section id="about" class="section">
-        <p>about(profile):자신을 소개하는 영역, 개인정보 제외,
-          이력서에 표기되지 않는 내용, 주요내용들을 표기
-          (약력,기술(스킬),성향,취미,관심 - 인포그래픽)</p>
+        <div class="about-inner">
+          <div class="about-profile">
+            <div class="about-section-title">
+              <h2>PROFILE</h2>
+            </div>
+            <dl class="profile-list">
+              <dt>이름</dt><dd>박민서</dd>
+              <dt>생년월일</dt><dd>1997. 03. 12</dd>
+              <dt>거주지</dt><dd>전주, 대한민국</dd>
+              <dt>이메일</dt><dd><a href="mailto:yelan.park@example.com">yelan.park@example.com</a></dd>
+              <dt>연락처</dt><dd><a href="tel:01012345678">010-1234-5678</a></dd>
+              <dt>SNS</dt>
+              <dd>
+                <div class="social-links" aria-label="소셜 미디어 링크">
+                  <a href="#" aria-label="Social link 1"><img src="./images/Social Icons 1.png" alt=""></a>
+                  <a href="#" aria-label="Social link 2"><img src="./images/Social Icons 2.png" alt=""></a>
+                  <a href="#" aria-label="Social link 3"><img src="./images/Social Icons 3.png" alt=""></a>
+                  <a href="#" aria-label="Social link 4"><img src="./images/Social Icons 4.png" alt=""></a>
+                </div>
+              </dd>
+            </dl>
+            <a class="about-cta" href="mailto:yelan.park@example.com">
+              <span>CONTACT ME</span><span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
       </section>
       <section id="works" class="section">
         <!--works(portfolio):작업한 프로젝트들을 진열하고, 
