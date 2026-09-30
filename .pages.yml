@@ -1,0 +1,115 @@
+media:
+  input: images
+  output: /images
+
+content:
+  - name: works
+    label: Works
+    type: file
+    path: data/works.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{title} / {category}"
+    fields:
+      - name: id
+        label: ID / Slug
+        type: string
+        required: true
+        pattern: "^[a-z0-9-]+$"
+      - name: title
+        label: 작품명
+        type: string
+        required: true
+      - name: category
+        label: 카테고리
+        type: string
+        required: true
+      - name: year
+        label: 연도
+        type: string
+      - name: thumbnail
+        label: 대표 이미지
+        type: image
+        required: true
+      - name: description
+        label: 간단한 설명
+        type: text
+      - name: detailPage
+        label: 상세 페이지
+        type: reference
+        options:
+          collection: detail-pages
+          search: "title,path"
+          value: "{primary}"
+          label: "{name}"
+      - name: published
+        label: 공개 여부
+        type: boolean
+        default: true
+      - name: featured
+        label: 메인 노출
+        type: boolean
+        default: false
+      - name: order
+        label: 노출 순서
+        type: number
+        required: true
+
+  - name: detail-pages
+    label: Detail Pages
+    type: collection
+    path: content/detail-pages
+    format: yaml
+    extension: yml
+    fields:
+      - name: title
+        label: 페이지명
+        type: string
+        required: true
+      - name: path
+        label: 실제 HTML 경로
+        type: string
+        required: true
+      - name: exists
+        label: 파일 존재 여부
+        type: boolean
+        readonly: true
+    view:
+      fields: [title, path, exists]
+      primary: path
+      search: [title, path]
+      sort: [title]
+
+  - name: guestbook
+    label: Guestbook
+    type: collection
+    path: content/guestbook
+    format: yaml-frontmatter
+    exclude: [".gitkeep"]
+    fields:
+      - name: name
+        label: 이름
+        type: string
+        readonly: true
+      - name: createdAt
+        label: 작성일
+        type: date
+        readonly: true
+        options:
+          time: true
+      - name: approved
+        label: 승인 여부
+        type: boolean
+      - name: body
+        label: 메시지
+        type: text
+        readonly: true
+    view:
+      fields: [name, createdAt, approved]
+      primary: name
+      sort: [createdAt]
+      default:
+        sort: createdAt
+        order: desc
