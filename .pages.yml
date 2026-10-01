@@ -36,13 +36,9 @@ content:
         label: 간단한 설명
         type: text
       - name: detailPage
-        label: 상세 페이지
-        type: reference
-        options:
-          collection: detail-pages
-          search: "title,path"
-          value: "{primary}"
-          label: "{name}"
+        label: 상세 페이지 주소
+        type: string
+        description: "예: detail-branding.html 또는 details/branding.html"
       - name: published
         label: 공개 여부
         type: boolean
@@ -55,31 +51,6 @@ content:
         label: 노출 순서
         type: number
         required: true
-
-  - name: detail-pages
-    label: Detail Pages
-    type: collection
-    path: content/detail-pages
-    format: yaml
-    filename: "{title}.yml"
-    fields:
-      - name: title
-        label: 페이지명
-        type: string
-        required: true
-      - name: path
-        label: 실제 HTML 경로
-        type: string
-        required: true
-      - name: exists
-        label: 파일 존재 여부
-        type: boolean
-        readonly: true
-    view:
-      fields: [title, path, exists]
-      primary: path
-      search: [title, path]
-      sort: [title]
 
   - name: guestbook
     label: Guestbook
