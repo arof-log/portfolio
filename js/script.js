@@ -133,6 +133,65 @@ async function loadWorks() {
   }
 }
 
+
+function formatGuestbookDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date).replace(/\. /g, '.').replace(/\.$/, '');
+}
+
+function renderGuestbook(entries) {
+  const list = document.getElementById('guestbook-list');
+  const count = document.getElementById('guestbook-count');
+  if (!list) return;
+
+  if (count) {
+    count.textContent = `${String(entries.length).padStart(2, '0')} NOTES`;
+  }
+
+  if (!entries.length) {
+    list.innerHTML = '<p class="guestbook-empty">아직 공개된 방명록이 없습니다. 첫 메시지를 남겨주세요.</p>';
+    return;
+  }
+
+  list.innerHTML = entries.map((entry, index) => {
+    const number = String(index + 1).padStart(2, '0');
+    const name = escapeHTML(entry.name || 'Anonymous');
+    const message = escapeHTML(entry.message || '');
+    const date = escapeHTML(formatGuestbookDate(entry.createdAt));
+
+    return `
+      <article class="guestbook-item">
+        <span class="guestbook-index">No. ${number}</span>
+        <div class="guestbook-message">
+          <p>${message}</p>
+          <strong>${name}</strong>
+        </div>
+        <time class="guestbook-date" datetime="${escapeHTML(entry.createdAt || '')}">${date}</time>
+      </article>
+    `;
+  }).join('');
+}
+
+async function loadGuestbook() {
+  const list = document.getElementById('guestbook-list');
+  try {
+    const response = await fetch('/api/guestbook', { cache: 'no-store' });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.message || '방명록을 불러오지 못했습니다.');
+    renderGuestbook(Array.isArray(result.entries) ? result.entries : []);
+  } catch (error) {
+    console.error('GUESTBOOK 데이터를 불러오지 못했습니다.', error);
+    if (list) {
+      list.innerHTML = '<p class="guestbook-empty">방명록을 불러오지 못했습니다.</p>';
+    }
+  }
+}
+
 function setupGuestbook() {
   const form = document.getElementById('guestbook-form');
   const status = document.getElementById('guestbook-status');
@@ -207,7 +266,7 @@ function setupGuestbook() {
       if (window.turnstile && turnstileWidgetId !== null) {
         window.turnstile.reset(turnstileWidgetId);
       }
-      status.textContent = '메시지가 전송되었습니다. 감사합니다.';
+      status.textContent = '메시지가 전송되었습니다. 관리자 승인 후 목록에 표시됩니다.';
     } catch (error) {
       console.error(error);
       status.textContent = error.message || '메시지 전송에 실패했습니다.';
@@ -218,4 +277,5 @@ function setupGuestbook() {
 }
 
 loadWorks();
+loadGuestbook();
 setupGuestbook();
