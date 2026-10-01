@@ -1,0 +1,356 @@
+    :root {
+      --bg-warm: #fbf5eb;
+      --bg-card: #ffffff;
+      --point-green: #263831;
+      --point-ivory: #f3f0e8;
+      --line-color: #dcd7cb;
+      --text-main: #263831;
+      --text-sub: #6f756f;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", sans-serif;
+      background-color: var(--bg-warm);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* 공통 레이아웃 */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .guide-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .guide-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: var(--line-color);
+    }
+
+    /* ============================================================
+       1영역: 비디오 배경 & 스크롤 페이드아웃 (Sticky / Hero)
+    ============================================================ */
+    #section1 {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background-color: #2C4A3B;
+      color: #fff;
+      will-change: opacity, transform;
+    }
+
+    /* 배경 비디오 스타일 */
+    .hero-video {
+      width: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* 가독성을 위한 어두운 오버레이 */
+    .hero-overlay {
+      position: absolute; width:100%; height:100%;
+      inset: 0;
+      background:#2C4A3B;
+      z-index: 2;
+      display:flex; justify-content:center;
+      align-items: center;
+      opacity:0;
+    }
+
+
+    /* 비디오 상단 타이틀 텍스트 */
+    .hero-content {
+      z-index: 3;
+      
+    }
+
+    .hero-logo-box {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: 6px;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .hero-slogan {
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      opacity: 0.9;
+    }
+
+    /* 스크롤 안내 인디케이터 */
+    .scroll-down {
+      position: absolute;
+      bottom: 2.5rem;
+      z-index: 3;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      opacity: 0.7;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* ============================================================
+       2영역: 브랜드 & 로고 소개 (2열 레이아웃)
+    ============================================================ */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .brand-logo-area {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--point-ivory);
+      border-radius: 12px;
+    }
+    .brand-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      margin-bottom: 0.8rem;
+    }
+    .brand-title img{
+      width:50%;
+    }
+    .brand-sub {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: var(--text-sub);
+      margin-bottom: 3rem;
+    }
+    .icon-list {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .circle-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--line-color);
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+    .icon-item span {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+    }
+
+    /* 2영역 우측 Swiper */
+    .swiper-container-mockup {
+      width: 100%;
+      height: 420px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border:1px solid var(--point-ivory);
+    }
+    .swiper-container-mockup .swiper-slide {
+      background: #e9e5db;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--point-green);
+      border: 1px solid var(--line-color);
+      position:relative;
+    }
+
+    .swiper-container-mockup .swiper-slide img{
+      width:100%; height:100%; object-fit:cover;
+    }
+.swiper-container-mockup .swiper-slide p{
+    position:absolute; 
+          font-size: 1rem;
+      letter-spacing: 2px;
+      color: #fff;
+      left:1rem;
+      bottom: 1rem;
+}
+    /* ============================================================
+       3영역: 디자인 시스템 가이드
+    ============================================================ */
+    .system-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 5rem;
+    }
+    
+    .essence-box p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #4a524a;
+      margin-bottom: 2rem;
+    }
+    .mini-icon-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .mini-icon-item {
+      text-align: center;
+      font-size: 0.75rem;
+    }
+    .mini-icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--line-color);
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .typo-preview {
+      background: var(--point-ivory);
+      border-radius: 8px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border: 1px dashed var(--line-color);
+    }
+    .typo-preview h3 {
+      font-size: 2rem;
+      letter-spacing: 4px;
+      margin-bottom: 1rem;
+    }
+    .typo-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 1rem;
+    }
+
+    .palette-chips {
+      display: flex;
+      gap: 1rem;
+    }
+    .color-card {
+      flex: 1;
+    }
+    .chip {
+      height: 100px;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .color-card p {
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .color-card span {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+    }
+
+    .pattern-card {
+      height: 120px;
+      background: repeating-linear-gradient(45deg, var(--point-green), var(--point-green) 10px, #1f2e28 10px, #1f2e28 20px);
+      border-radius: 6px;
+    }
+
+    .app-swiper {
+      width: 100%;
+      height: 220px;
+      margin-bottom: 3.5rem;
+    }
+    .app-swiper .swiper-slide {
+      background: #e2ded5;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--point-green);
+    }
+
+    /* ============================================================
+       4영역: 대표 목업 모음
+    ============================================================ */
+    #section4 {
+      padding: 6rem 2rem 10rem;
+    }
+    .rep-mockup-item {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin-bottom: 9rem;
+    }
+    .rep-mockup-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .rep-mockup-img {
+      flex: 1.3;
+      height: 420px;
+      background: #ded9cd;
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      border: 1px solid var(--line-color);
+      transform-origin: center;
+    }
+    .rep-mockup-desc {
+      flex: 0.9;
+    }
+    .rep-mockup-desc h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .rep-mockup-desc p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    @media (max-width: 900px) {
+      .intro-grid, .system-row, .rep-mockup-item, .rep-mockup-item:nth-child(even) {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        gap: 2rem;
+      }
+    }
