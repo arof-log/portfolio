@@ -10,5 +10,17 @@
     "published": true,
     "featured": true,
     "order": 1
+  },
+  {
+    "id": "branding",
+    "title": "오로지,숲",
+    "category": "branding",
+    "year": "2026",
+    "thumbnail": "/images/ChatGPT Image 2026년 8월 10일 오후 12_07_50.png",
+    "description": "오롯이, 숲은 복잡한 일상에서 벗어나 자연 속에서\n온전히 나에게 집중하는 시간을 제안하는 프라이빗 숲속 스테이 브랜드입니다.",
+    "detailPage": "./works/Forest_Stay/foreststay_detail.html",
+    "published": true,
+    "featured": false,
+    "order": 2
   }
 ]
