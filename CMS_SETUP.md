@@ -25,17 +25,18 @@
 
 예:
 - `detail-branding.html`
-- `detail-uiux.html`
+- `details/uiux.html`
 
-현재 기존 WORKS 카드가 연결하던 7개의 상세 HTML 파일은 저장소에 실제 파일이 없습니다.
-`content/detail-pages/`에는 해당 경로를 메타데이터로 등록했고 `exists: false`로 표시했습니다.
+상세페이지 파일을 만든 뒤 Pages CMS에서:
 
-새 상세페이지를 추가한 뒤:
-1. HTML 파일을 저장소에 추가합니다.
-2. Pages CMS → **Detail Pages**에서 메타데이터를 추가하거나 수정합니다.
-3. `path`에 실제 HTML 경로를 입력합니다.
-4. 실제 파일이 준비되면 `exists` 값은 GitHub에서 `true`로 바꿉니다.
-5. Pages CMS → **Works** → **상세 페이지**에서 선택합니다.
+1. **Works** 메뉴를 엽니다.
+2. 해당 작품을 선택합니다.
+3. **상세 페이지 주소**에 실제 HTML 경로를 직접 입력합니다.
+4. 예: `detail-branding.html`, `details/branding.html`
+5. 저장하면 `data/works.json`의 `detailPage` 값이 수정됩니다.
+6. 사이트의 작품 카드 링크도 자동으로 해당 주소를 사용합니다.
+
+별도의 **Detail Pages** 메뉴는 사용하지 않습니다.
 
 ## 방명록 확인
 
