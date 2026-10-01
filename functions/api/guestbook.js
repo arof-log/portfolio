@@ -37,6 +37,56 @@ async function verifyTurnstile(secret, token, remoteip) {
   return result.success === true;
 }
 
+
+function base64ToUtf8(value) {
+  const binary = atob(String(value || '').replace(/\n/g, ''));
+  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+function decodeSanitizedText(value) {
+  return String(value || '')
+    .replaceAll('&#039;', "'")
+    .replaceAll('&quot;', '"')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&lt;', '<')
+    .replaceAll('&amp;', '&');
+}
+
+function parseGuestbookFile(content) {
+  const match = String(content || '').match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
+  if (!match) return null;
+
+  const frontmatter = match[1];
+  const body = match[2].trim();
+  const nameMatch = frontmatter.match(/^name:\s*(.+)$/m);
+  const createdAtMatch = frontmatter.match(/^createdAt:\s*(.+)$/m);
+  const approvedMatch = frontmatter.match(/^approved:\s*(true|false)$/m);
+
+  if (!approvedMatch || approvedMatch[1] !== 'true') return null;
+
+  let name = 'Anonymous';
+  let createdAt = '';
+
+  try {
+    if (nameMatch) name = JSON.parse(nameMatch[1]);
+  } catch {
+    if (nameMatch) name = nameMatch[1].trim();
+  }
+
+  try {
+    if (createdAtMatch) createdAt = JSON.parse(createdAtMatch[1]);
+  } catch {
+    if (createdAtMatch) createdAt = createdAtMatch[1].trim();
+  }
+
+  return {
+    name: decodeSanitizedText(name),
+    createdAt,
+    message: decodeSanitizedText(body),
+  };
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -124,6 +174,53 @@ ${safeMessage}
   return json({ ok: true, message: '메시지가 저장되었습니다.' }, 201);
 }
 
-export function onRequestGet() {
-  return json({ message: 'Method Not Allowed' }, 405);
+export async function onRequestGet(context) {
+  const { env } = context;
+  const token = env.GITHUB_TOKEN;
+  const owner = env.GITHUB_OWNER;
+  const repo = env.GITHUB_REPO;
+  const branch = env.GITHUB_BRANCH || 'main';
+
+  if (!owner || !repo) {
+    return json({ message: '서버 설정이 완료되지 않았습니다.' }, 500);
+  }
+
+  const headers = {
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'User-Agent': 'cloudflare-pages-guestbook',
+  };
+  if (token) headers.Authorization = `Bearer ${token}`;
+
+  const directoryResponse = await fetch(
+    `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/content/guestbook?ref=${encodeURIComponent(branch)}`,
+    { headers }
+  );
+
+  if (!directoryResponse.ok) {
+    console.error('GitHub guestbook list failed', directoryResponse.status, await directoryResponse.text());
+    return json({ message: '방명록을 불러오지 못했습니다.' }, 502);
+  }
+
+  const files = await directoryResponse.json();
+  const markdownFiles = Array.isArray(files)
+    ? files.filter((file) => file?.type === 'file' && file.name?.endsWith('.md')).slice(0, 100)
+    : [];
+
+  const entries = (await Promise.all(markdownFiles.map(async (file) => {
+    try {
+      const fileResponse = await fetch(file.url, { headers });
+      if (!fileResponse.ok) return null;
+      const payload = await fileResponse.json();
+      const parsed = parseGuestbookFile(base64ToUtf8(payload.content));
+      return parsed;
+    } catch (error) {
+      console.error('Guestbook file read failed', file?.name, error);
+      return null;
+    }
+  })))
+    .filter(Boolean)
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+  return json({ entries });
 }
