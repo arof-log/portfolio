@@ -188,33 +188,63 @@
       </section>
 
       <section id="contact" class="section">
-        <div class="contact-inner">
-          <div class="contact-copy">
-            <p class="contact-eyebrow">CONTACT / GUESTBOOK</p>
-            <h2>Leave a quiet note.</h2>
-            <p>포트폴리오를 보고 남기고 싶은 한마디를 전해주세요.<br>메시지는 관리자 확인 후 관리됩니다.</p>
+        <div class="contact-shell">
+          <div class="contact-header">
+            <div>
+              <p class="contact-eyebrow">CONTACT / GUESTBOOK</p>
+              <h2>Leave a quiet note.</h2>
+            </div>
+            <div class="contact-meta">
+              <span>PORTFOLIO GUESTBOOK</span>
+              <strong>04</strong>
+            </div>
           </div>
 
-          <form id="guestbook-form" class="guestbook-form" data-turnstile-site-key="" novalidate>
-            <div class="field">
-              <label for="guest-name">Name</label>
-              <input id="guest-name" name="name" type="text" maxlength="40" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="guest-message">Message</label>
-              <textarea id="guest-message" name="message" maxlength="500" rows="5" required></textarea>
+          <div class="contact-content">
+            <div class="contact-write">
+              <div class="contact-copy">
+                <p class="contact-kicker">A SMALL MESSAGE, A LONG MEMORY.</p>
+                <p>포트폴리오를 보고 남기고 싶은 한마디를 전해주세요.<br>승인된 메시지는 이 공간에 함께 기록됩니다.</p>
+              </div>
+
+              <form id="guestbook-form" class="guestbook-form" data-turnstile-site-key="" novalidate>
+                <div class="field">
+                  <label for="guest-name">Name</label>
+                  <input id="guest-name" name="name" type="text" maxlength="40" autocomplete="name" placeholder="Your name" required>
+                </div>
+                <div class="field">
+                  <label for="guest-message">Message</label>
+                  <textarea id="guest-message" name="message" maxlength="500" rows="5" placeholder="Leave your message here." required></textarea>
+                </div>
+
+                <div class="guestbook-hp" aria-hidden="true">
+                  <label for="guest-website">Website</label>
+                  <input id="guest-website" name="website" type="text" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div id="turnstile-slot" class="turnstile-slot"></div>
+
+                <div class="form-footer">
+                  <p id="guestbook-status" class="guestbook-status" role="status" aria-live="polite"></p>
+                  <button type="submit">SEND NOTE <span aria-hidden="true">↗</span></button>
+                </div>
+              </form>
             </div>
 
-            <div class="guestbook-hp" aria-hidden="true">
-              <label for="guest-website">Website</label>
-              <input id="guest-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            <div class="guestbook-board">
+              <div class="guestbook-board-head">
+                <div>
+                  <p class="board-label">RECENT NOTES</p>
+                  <h3>Guestbook Archive</h3>
+                </div>
+                <span id="guestbook-count" class="guestbook-count">00 NOTES</span>
+              </div>
+
+              <div id="guestbook-list" class="guestbook-list" aria-live="polite">
+                <p class="guestbook-empty">방명록을 불러오는 중입니다.</p>
+              </div>
             </div>
-
-            <div id="turnstile-slot" class="turnstile-slot"></div>
-
-            <button type="submit">Leave a Message <span aria-hidden="true">→</span></button>
-            <p id="guestbook-status" class="guestbook-status" role="status" aria-live="polite"></p>
-          </form>
+          </div>
         </div>
       </section>
     </div><!--end:.container-->
