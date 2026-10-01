@@ -6,7 +6,7 @@
     "year": "2026",
     "thumbnail": "/images/list1.png",
     "description": "호흡감 있는 컷 편집과 필름 그레인 색보정(DI)으로 직조한 브랜드 필름.",
-    "detailPage": "detail-video.html",
+    "detailPage": "./works/monologue_detail.html",
     "published": true,
     "featured": true,
     "order": 1
