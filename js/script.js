@@ -66,6 +66,11 @@ function renderWorks(works) {
     .filter((work) => work && work.published !== false)
     .sort((a, b) => Number(a.order ?? 9999) - Number(b.order ?? 9999));
 
+  const worksCount = document.getElementById('works-count');
+  if (worksCount) {
+    worksCount.textContent = `${String(visibleWorks.length).padStart(2, '0')} WORKS`;
+  }
+
   list.innerHTML = visibleWorks.map((work, index) => {
     const number = String(index + 1).padStart(2, '0');
     const title = escapeHTML(work.title || 'Untitled');
