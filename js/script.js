@@ -1,12 +1,3 @@
-const video = document.getElementById('back');
-const mainInner = document.getElementById('main_inner');
-
-if (video && mainInner) {
-  video.addEventListener('ended', () => {
-    mainInner.classList.add('active');
-  });
-}
-
 const gnbSwiper = new Swiper('#gnb', {
   wrapperClass: 'menu',
   slideClass: 'btn',
